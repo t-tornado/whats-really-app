@@ -1,11 +1,12 @@
 import React from "react";
 import "./index.css";
-import { AuthPage } from "./pages";
+import { AuthPage, MessagingPage } from "./pages";
 
 const App: React.FC = () => {
   return (
-    <div className="container mx-auto h-screen">
-      <AuthPage />
+    <div className="2xl:container w-screen mx-auto h-screen overflow-hidden">
+      {/* <AuthPage /> */}
+      <MessagingPage />
     </div>
   );
 };
