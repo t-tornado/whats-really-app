@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
+import { FiChevronsRight } from "react-icons/fi";
 
 export const AuthPage: React.FC = () => {
   const { loginWithPopup } = useAuth0();
@@ -27,33 +28,16 @@ export const AuthPage: React.FC = () => {
       <p className="text-base font-poppins py-3">
         Sign in to your account below
       </p>
-      <form className="w-[30%] h-48 flex flex-col justify-between mt-16 mb-10">
-        <input
-          type="email"
-          className="w-full h-10 p-2 pl-4 rounded-md border-2 border-gray"
-          placeholder="Email"
-          value={email}
-          onChange={onEmailChange}
-        />
-        <input
-          type="password"
-          className="w-full h-10 p-2 pl-4 rounded-md border-2 border-gray"
-          placeholder="Password"
-          value={password}
-          onChange={onPasswordChange}
-        />
-        <input
-          type="button"
-          className="w-24 h-12 p-3 font-poppins text-white text-base bg-default rounded-md cursor-pointer"
-          value="Sign in"
+      <div className="w-[23%] h-48 flex flex-col justify-between mt-16 mb-10">
+        <button
+          className="flex p-3 space-x-4 font-poppins text-white text-base bg-default rounded-md cursor-pointer"
           onClick={submitCredentials}
-        />
-      </form>
-      <div className="flex items-center space-x-2">
-        <span className="text-base font-poppins text-default">
-          Register with
-        </span>
-        <span className="text-base font-poppins text-lightBlue">Gmail!</span>
+        >
+          <span className="text-white text-base">
+            Proceed to authentication
+          </span>
+          <FiChevronsRight color="#fff" size="25px" />
+        </button>
       </div>
     </div>
   );
