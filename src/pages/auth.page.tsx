@@ -1,6 +1,8 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 
 export const AuthPage: React.FC = () => {
+  const { loginWithPopup } = useAuth0();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +16,7 @@ export const AuthPage: React.FC = () => {
 
   const submitCredentials = (e: any) => {
     e.preventDefault();
-    console.log({ Credentials: { email, password } });
+    loginWithPopup();
   };
 
   return (
