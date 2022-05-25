@@ -6,6 +6,7 @@ module.exports = {
         default: "#000",
         lightBlue: "#7579E7",
         darkBlue: "#120078",
+        gray: "#c4c4c4",
       },
       fontFamily: {
         poppins: ["Poppins"],
