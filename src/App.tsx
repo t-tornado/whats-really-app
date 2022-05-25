@@ -1,12 +1,11 @@
 import React from "react";
 import "./index.css";
+import { AuthPage } from "./pages";
 
 const App: React.FC = () => {
   return (
-    <div className="container mx-auto h-screen flex justify-center items-center">
-      <span className="h2 text-default text-2xl">
-        Welcome to WhatsReallyApp?
-      </span>
+    <div className="container mx-auto h-screen">
+      <AuthPage />
     </div>
   );
 };
