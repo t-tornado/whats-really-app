@@ -1,12 +1,14 @@
 import React from "react";
+import { IMessage } from "../utils";
 
 interface Props {
+  message: IMessage;
   self: boolean;
-  message: string;
 }
 
 export const Message: React.FC<Props> = (props) => {
-  const { self, message } = props;
+  const { message, self } = props;
+  const { body } = message;
   return (
     <div
       className={`flex items-center ${self ? "justify-end" : "justify-start"}`}
@@ -16,7 +18,7 @@ export const Message: React.FC<Props> = (props) => {
           self ? "bg-lightBlue text-white" : "bg-white text-default"
         } text-sm font-poppins py-3 px-5 rounded-md max-w-[70%]`}
       >
-        {message}
+        {body}
       </p>
     </div>
   );
