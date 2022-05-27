@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { IUser, useSocket } from "../utils";
+import { IUser, useActiveUser, useSocket } from "../utils";
 import { UserCard } from "./user.card";
 
-export const UsersNav: React.FC = () => {
+interface Props {
+  setRecipient: (user: IUser) => void;
+}
+
+export const UsersNav: React.FC<Props> = (props) => {
+  const { setRecipient } = props;
   const socket = useSocket();
+  const [activeUser, setActiveUser] = useActiveUser();
   const [users, setUsers] = useState<IUser[]>([]);
   const { logout } = useAuth0();
 
@@ -13,12 +19,15 @@ export const UsersNav: React.FC = () => {
   };
 
   const renderUsers = () => {
-    return users.map((user, idx) => <UserCard user={user} key={idx} />);
+    return users.map((user, idx) => (
+      <UserCard user={user} key={idx} setRecipient={setRecipient} />
+    ));
   };
 
   useEffect(() => {
     socket.on("fetchUsers", (data) => {
       setUsers(data.users || []);
+      setActiveUser(data.activeUser);
     });
   }, [socket]);
 
@@ -26,7 +35,7 @@ export const UsersNav: React.FC = () => {
     <div className="w-[25%] h-full m-0 p-0 bg-navBg">
       <div className="h-[7%] py-6 w-full flex justify-center items-center">
         <span className="font-poppinsMedium text-base text-darkBlue">
-          example@gmail.com
+          {activeUser ? activeUser.username : ""}
         </span>
       </div>
       <div className="flex flex-col h-[80%] overflow-y-scroll">
