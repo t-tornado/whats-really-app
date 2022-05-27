@@ -5,18 +5,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { AppConfig } from "./utils";
+import { SocketProvider } from "./context";
 
 const { auth0ClientID: clientId, auth0Domain: domain } = AppConfig;
-console.log({ clientId, domain });
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <Auth0Provider {...{ clientId, domain, redirectUri: window.location.origin }}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <SocketProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </SocketProvider>
   </Auth0Provider>
 );
 
