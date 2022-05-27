@@ -1,9 +1,11 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { Message } from "./message";
 import { UserCard } from "./user.card";
 
 export const MessagesBody: React.FC = () => {
+  const { user } = useAuth0();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState("");
@@ -25,7 +27,7 @@ export const MessagesBody: React.FC = () => {
   return (
     <div className="w-[75%] h-full px-10">
       <div className="w-full h-[10%] flex items-center justify-start">
-        <UserCard />
+        <UserCard user={user?.nickname || ""} />
       </div>
       <div className="w-full h-[70%] flex flex-col space-y-4 px-6 overflow-hidden overflow-y-scroll">
         <div className="w-[95%] mx-auto h-full space-y-6">

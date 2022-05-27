@@ -1,13 +1,26 @@
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import { IUser, useSocket } from "../utils";
 import { UserCard } from "./user.card";
 
 export const UsersNav: React.FC = () => {
+  const socket = useSocket();
+  const [users, setUsers] = useState<IUser[]>([]);
   const { logout } = useAuth0();
 
   const onLogout = () => {
     logout();
   };
+
+  const renderUsers = () => {
+    return users.map((user, idx) => <UserCard user={user} key={idx} />);
+  };
+
+  useEffect(() => {
+    socket.on("fetchUsers", (data) => {
+      setUsers(data.users || []);
+    });
+  }, [socket]);
 
   return (
     <div className="w-[25%] h-full m-0 p-0 bg-navBg">
@@ -17,78 +30,7 @@ export const UsersNav: React.FC = () => {
         </span>
       </div>
       <div className="flex flex-col h-[80%] overflow-y-scroll">
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+        {renderUsers()}
       </div>
       <div className="flex h-[10%] justify-center items-end w-full">
         <button
