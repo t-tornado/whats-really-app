@@ -84,7 +84,7 @@ export const MessagesBody: React.FC<Props> = (props) => {
       <div className="w-full h-[10%] flex items-center justify-start">
         {currentRecipient ? <UserCard user={currentRecipient} /> : null}
       </div>
-      <div className="w-full h-[70%] flex flex-col space-y-4 px-6 overflow-hidden overflow-y-scroll">
+      <div className="w-full h-[70%] flex flex-col space-y-5 px-6 overflow-hidden overflow-y-scroll">
         <div
           className={`${
             currentRecipient
