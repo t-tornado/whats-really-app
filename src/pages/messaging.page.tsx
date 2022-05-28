@@ -18,7 +18,7 @@ export const MessagingPage: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full h-screen bg-gray">
+    <div className="flex w-full h-screen bg-white">
       <UsersNav setRecipient={setRecipient} />
       <MessagesBody currentRecipient={currentRecipient} currentUser={user} />
     </div>

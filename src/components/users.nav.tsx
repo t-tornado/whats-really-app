@@ -67,26 +67,27 @@ export const UsersNav: React.FC<Props> = (props) => {
   };
   return (
     <div className="w-[25%] h-full m-0 p-0 bg-navBg flex flex-col">
-      <div className="h-[7%] py-6 w-full flex justify-center items-center bg-blue-200">
+      <h1 className="p-6 text-lg font-poppinsBold text-lightBlue">Chats</h1>
+      {/* <div className="h-[7%] py-6 w-full flex justify-center items-center bg-blue-200">
         <span className="font-poppinsMedium text-base text-darkBlue">
           {activeUser ? activeUser.username : ""}
         </span>
-      </div>
-      <div className={`flex flex-col bg-red-100 mb-4 overflow-hidden`}>
+      </div> */}
+      <div className={`flex flex-col bg-lightBlue mb-4 overflow-hidden`}>
         <div
           onClick={toggleOpenBlockedUsers}
           className="flex items-center justify-between px-4 pl-6"
         >
-          <span className="font-poppinsMedium text-red-500 text-sm pl-4">
+          <span className="font-poppinsMedium text-white text-sm pl-4 py-4">
             Blocked users
           </span>
           {openBlockedUsers ? (
             <>
-              <BsChevronUp color="#000" size="12px" />
+              <BsChevronUp color="#fff" size="15px" />
             </>
           ) : (
             <>
-              <BsChevronDown color="#000" size="12px" />
+              <BsChevronDown color="#fff" size="15px" />
             </>
           )}
         </div>
