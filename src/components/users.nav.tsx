@@ -48,9 +48,10 @@ export const UsersNav: React.FC<Props> = (props) => {
       setUsers(data.users || []);
       setActiveUser(data.activeUser);
     });
-    socket.on("afterBlockUserOperation", (blockedUser) => {
-      console.log("User has been blocked, getting updated user");
-      setBlockedUsers((p) => [...p, blockedUser]);
+    socket.on("afterBlockUserOperation", (blockedUsers) => {
+      console.log("User has been blocked, getting updated user blocked users");
+      console.log(blockedUsers);
+      setBlockedUsers(blockedUsers);
     });
 
     socket.on("fetchBlockedUsers", (blockedUsers) => {
@@ -71,7 +72,7 @@ export const UsersNav: React.FC<Props> = (props) => {
           {activeUser ? activeUser.username : ""}
         </span>
       </div>
-      <div className={`flex bg-red-100 mb-4`}>
+      <div className={`flex flex-col bg-red-100 mb-4 overflow-hidden`}>
         <div
           onClick={toggleOpenBlockedUsers}
           className="flex items-center justify-between px-4 pl-6"
@@ -90,8 +91,8 @@ export const UsersNav: React.FC<Props> = (props) => {
           )}
         </div>
         <div
-          className={`flex flex-col w-full transition-height transition-all ease-in-out duration-900  overflow-hidden ${
-            openBlockedUsers ? "min-h-32" : "min-h-0"
+          className={`flex flex-col w-full transition-height transition-all ease-in-out duration-900 ${
+            openBlockedUsers ? "min-h-32" : "h-0"
           } `}
         >
           {renderBlockedUsers()}

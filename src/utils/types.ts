@@ -12,7 +12,8 @@ export interface IMessage {
   sender_id: string;
   body: string;
   timestamp: Date;
-  blocked: boolean;
+  sender_blocked: boolean;
+  recipient_blocked: boolean;
 }
 
 export interface IConversation {

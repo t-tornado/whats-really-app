@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { IMessage, IUser, ReqMessage, useSocket } from "../utils";
@@ -36,39 +35,38 @@ export const MessagesBody: React.FC<Props> = (props) => {
   };
 
   const renderMessages = () => {
-    return messages.map((message, idx) => (
-      <Message
-        {...{ message, self: message.sender_id === currentUser?._id, key: idx }}
-      />
-    ));
+    return messages.map((message, idx) => {
+      if (
+        (message.recipient_blocked && currentUser?._id !== message.sender_id) ||
+        (message.sender_blocked && currentUser?._id !== message.sender_id)
+      )
+        return null;
+      else
+        return (
+          <Message
+            {...{
+              message,
+              self: message.sender_id === currentUser?._id,
+              key: idx,
+            }}
+          />
+        );
+    });
   };
-
-  // function scrollToBottom() {
-  //   if (messageContainerRef.current) {
-  //     const { current } = messageContainerRef;
-  //     const scrollHeight = current?.scrollHeight;
-  //     const height = current?.scrollHeight;
-  //     current.scrollTo({ top: 20 });
-  //   }
-  // }
 
   useEffect(() => {
     setMessages([]);
   }, [currentRecipient]);
 
   useEffect(() => {
-    console.log("Current receiver changed");
     socket.on("fetchMessages", (data) => {
-      console.log(data.members);
-      console.log(currentRecipient?._id);
-      console.log(currentUser?._id);
-      console.log("");
+      console.log("MESSAGE FETCHED");
       if (
         data.members.includes(currentUser?._id) &&
         data.members.includes(currentRecipient?._id)
       ) {
         setMessages(data.messages || []);
-      }
+      } else console.warn("not your conversation");
     });
   }, [socket, currentRecipient]);
 
@@ -78,6 +76,8 @@ export const MessagesBody: React.FC<Props> = (props) => {
       inline: "end",
     });
   }, [messages, scrollIntoViewRef]);
+
+  console.log(messages);
 
   return (
     <div className="w-[75%] h-full px-10">
