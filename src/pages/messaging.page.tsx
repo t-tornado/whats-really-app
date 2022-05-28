@@ -9,7 +9,11 @@ export const MessagingPage: React.FC = () => {
 
   const setRecipient = (recipient: IUser) => {
     setCurrentRecipient(recipient);
-    socket.emit("getMessages", [user?._id, recipient?._id]);
+    const params = {
+      recipient_id: recipient?._id,
+      sender_id: user?._id,
+    };
+    socket.emit("getMessages", params);
     console.log([user?._id, recipient?._id]);
   };
 

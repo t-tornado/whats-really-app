@@ -12,6 +12,7 @@ export const UsersNav: React.FC<Props> = (props) => {
   const { setRecipient } = props;
   const socket = useSocket();
   const [activeUser, setActiveUser] = useActiveUser();
+  const [blockedUsers, setBlockedUsers] = useState<any[]>([]);
   const [openBlockedUsers, setOpenBlockedUsers] = useState(false);
   const [users, setUsers] = useState<IUser[]>([]);
   const { logout } = useAuth0();
@@ -20,9 +21,25 @@ export const UsersNav: React.FC<Props> = (props) => {
     logout();
   };
 
-  const renderUsers = () => {
+  const renderUnblockedUsers = () => {
     return users.map((user, idx) => (
-      <UserCard user={user} key={idx} setRecipient={setRecipient} />
+      <UserCard
+        type="unblocked-users"
+        user={user}
+        key={idx}
+        setRecipient={setRecipient}
+      />
+    ));
+  };
+
+  const renderBlockedUsers = () => {
+    return blockedUsers.map((user, idx) => (
+      <UserCard
+        type="blocked-users"
+        user={user}
+        key={idx}
+        setRecipient={setRecipient}
+      />
     ));
   };
 
@@ -31,12 +48,23 @@ export const UsersNav: React.FC<Props> = (props) => {
       setUsers(data.users || []);
       setActiveUser(data.activeUser);
     });
+    socket.on("afterBlockUserOperation", (blockedUsers) => {
+      console.log("User has been blocked, getting updated user blocked users");
+      console.log(blockedUsers);
+      setBlockedUsers(blockedUsers);
+    });
+
+    socket.on("fetchBlockedUsers", (blockedUsers) => {
+      console.log("Getting blocked users");
+      setBlockedUsers(blockedUsers);
+    });
   }, [socket]);
+
+  console.log(blockedUsers);
 
   const toggleOpenBlockedUsers = () => {
     setOpenBlockedUsers((p) => !p);
   };
-
   return (
     <div className="w-[25%] h-full m-0 p-0 bg-navBg flex flex-col">
       <div className="h-[7%] py-6 w-full flex justify-center items-center bg-blue-200">
@@ -44,10 +72,7 @@ export const UsersNav: React.FC<Props> = (props) => {
           {activeUser ? activeUser.username : ""}
         </span>
       </div>
-      <div
-        className={`
-        } relative flex flex-col bg-red-100 mb-4`}
-      >
+      <div className={`flex flex-col bg-red-100 mb-4 overflow-hidden`}>
         <div
           onClick={toggleOpenBlockedUsers}
           className="flex items-center justify-between px-4 pl-6"
@@ -66,13 +91,15 @@ export const UsersNav: React.FC<Props> = (props) => {
           )}
         </div>
         <div
-          className={`flex flex-col overflow-y-scroll w-full transition-height transition-all ease-in-out duration-900 ${
-            openBlockedUsers ? "h-32 overflow-hidden" : "h-0"
+          className={`flex flex-col w-full transition-height transition-all ease-in-out duration-900 ${
+            openBlockedUsers ? "min-h-32" : "h-0"
           } `}
-        ></div>
+        >
+          {renderBlockedUsers()}
+        </div>
       </div>
       <div className="relative flex flex-col flex-1 overflow-y-scroll ">
-        {renderUsers()}
+        {renderUnblockedUsers()}
       </div>
 
       <div className="flex h-[10%] justify-center items-end w-full pb-10">

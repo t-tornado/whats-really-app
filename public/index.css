@@ -500,6 +500,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+.relative {
+  position: relative;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -507,6 +511,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.ml-0 {
+  margin-left: 0px;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .mt-16 {
@@ -517,16 +529,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
+.block {
+  display: block;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.ml-0 {
-  margin-left: 0px;
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -541,92 +549,80 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
-.h-48 {
-  height: 12rem;
-}
-
-.h-10 {
-  height: 2.5rem;
-}
-
-.h-12 {
-  height: 3rem;
-}
-
-.h-4 {
-  height: 1rem;
+.h-\[10\%\] {
+  height: 10%;
 }
 
 .h-\[70\%\] {
   height: 70%;
 }
 
-.h-\[80\%\] {
-  height: 80%;
+.h-\[20\%\] {
+  height: 20%;
 }
 
-.h-\[7\%\] {
-  height: 7%;
-}
-
-.h-5 {
-  height: 1.25rem;
-}
-
-.h-\[10\%\] {
-  height: 10%;
-}
-
-.h-16 {
-  height: 4rem;
-}
-
-.h-\[13\%\] {
-  height: 13%;
-}
-
-.h-\[78\%\] {
-  height: 78%;
-}
-
-.h-\[15\%\] {
-  height: 15%;
-}
-
-.h-20 {
-  height: 5rem;
+.h-12 {
+  height: 3rem;
 }
 
 .h-14 {
   height: 3.5rem;
 }
 
-.h-\[75\%\] {
-  height: 75%;
+.h-16 {
+  height: 4rem;
 }
 
-.h-\[20\%\] {
-  height: 20%;
+.h-0 {
+  height: 0px;
+}
+
+.h-\[7\%\] {
+  height: 7%;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.min-h-0 {
+  min-height: 0px;
 }
 
 .w-screen {
   width: 100vw;
 }
 
-.w-\[30\%\] {
-  width: 30%;
+.w-\[75\%\] {
+  width: 75%;
 }
 
 .w-full {
   width: 100%;
 }
 
-.w-24 {
-  width: 6rem;
+.w-\[95\%\] {
+  width: 95%;
 }
 
-.w-1\/3 {
-  width: 33.333333%;
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-14 {
+  width: 3.5rem;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-\[25\%\] {
@@ -637,48 +633,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 8rem;
 }
 
-.w-\[75\%\] {
-  width: 75%;
-}
-
-.w-\[80\%\] {
-  width: 80%;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
-.w-\[60\%\] {
-  width: 60%;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-\[90\%\] {
-  width: 90%;
-}
-
-.w-\[70\%\] {
-  width: 70%;
-}
-
-.w-14 {
-  width: 3.5rem;
-}
-
-.w-\[95\%\] {
-  width: 95%;
+.w-\[23\%\] {
+  width: 23%;
 }
 
 .max-w-\[70\%\] {
   max-width: 70%;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
 }
 
 .cursor-pointer {
@@ -713,42 +677,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-between;
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-3 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
-.space-x-6 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-14 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(3.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(3.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -761,8 +689,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
+.space-x-14 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(3.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(3.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 .overflow-y-scroll {
@@ -781,38 +731,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 9999px;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
-.border-gray {
-  --tw-border-opacity: 1;
-  border-color: rgb(196 196 196 / var(--tw-border-opacity));
-}
-
-.bg-default {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-gray {
-  --tw-bg-opacity: 1;
-  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
-}
-
-.bg-navBg {
-  --tw-bg-opacity: 1;
-  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
-}
-
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+.rounded-b-lg {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .bg-lightBlue {
@@ -820,8 +741,34 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(117 121 231 / var(--tw-bg-opacity));
 }
 
-.p-2 {
-  padding: 0.5rem;
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-default {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-navBg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+}
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.bg-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
 }
 
 .p-3 {
@@ -832,27 +779,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0px;
 }
 
-.p-4 {
-  padding: 1rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
+.p-2 {
+  padding: 0.5rem;
 }
 
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .px-5 {
@@ -865,20 +798,44 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 2.5rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-.pl-6 {
-  padding-left: 1.5rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .pt-4 {
   padding-top: 1rem;
 }
 
-.font-poppinsBold {
-  font-family: PoppinsBold;
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .font-poppins {
@@ -889,14 +846,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-family: PoppinsMedium;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
+.font-poppinsBold {
+  font-family: PoppinsBold;
 }
 
 .text-sm {
@@ -904,13 +855,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25rem;
 }
 
-.tracking-wide {
-  letter-spacing: 0.025em;
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
-.text-default {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
 }
 
 .text-white {
@@ -918,14 +879,39 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-lightBlue {
+.text-default {
   --tw-text-opacity: 1;
-  color: rgb(117 121 231 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-darkBlue {
   --tw-text-opacity: 1;
   color: rgb(14 24 95 / var(--tw-text-opacity));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.transition-height {
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @font-face {
@@ -950,6 +936,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-family: "PoppinsBold";
 
   src: url("./assets/fonts/Poppins-Bold.ttf");
+}
+
+.hover\:bg-gray:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 1536px) {

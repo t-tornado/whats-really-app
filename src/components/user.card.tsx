@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import { FiUser } from "react-icons/fi";
-import {
-  BsCaretDown,
-  BsCaretUp,
-  BsFillHeptagonFill,
-  BsThreeDots,
-} from "react-icons/bs";
-import { IUser } from "../utils";
+import { BsFillHeptagonFill, BsThreeDots } from "react-icons/bs";
+import { IUser, useActiveUser, useSocket } from "../utils";
 
 interface Props {
   user: IUser;
-  source?: "listed";
+  type?: "blocked-users" | "unblocked-users";
   setRecipient?: (user: IUser) => void;
 }
 
 export const UserCard: React.FC<Props> = (props) => {
+  const { user, type } = props;
+  const socket = useSocket();
+  const activeUser = useActiveUser()[0];
   const [openOptions, setOpenOptions] = useState(false);
-  const username = props.user.username;
+  const username = user.username;
   const setCurrentRecipient = () => {
-    props.setRecipient && props.setRecipient(props?.user);
+    props.setRecipient && props.setRecipient(user);
     if (openOptions) {
       setOpenOptions(false);
     }
   };
   const toggleOptions = () => {
     setOpenOptions((p) => !p);
+  };
+
+  const blockUser = () => {
+    if (type === "blocked-users") {
+      const params = {
+        user_id: activeUser?._id,
+        unblock_user_id: props?.user?._id,
+      };
+      socket.emit("unBlockUser", params);
+    } else {
+      const params = {
+        user_id: activeUser?._id,
+        block_user_id: props?.user?._id,
+      };
+      socket.emit("blockUser", params);
+    }
+    setOpenOptions(false);
   };
   return (
     <div
@@ -50,9 +65,11 @@ export const UserCard: React.FC<Props> = (props) => {
         className={`${
           openOptions ? "h-14 p-3" : "h-0 p-0 overflow-hidden"
         } flex w-full space-x-6 pl-6 bg-white rounded-b-lg items-center justify-between px-5 transition-height transition-all duration-600 ease-in-out hover:bg-gray`}
-        onClick={setCurrentRecipient}
+        onClick={blockUser}
       >
-        <span className="text-sm text-default font-poppins">Block</span>
+        <span className="text-sm text-default font-poppins">
+          {type === "unblocked-users" ? "block" : "unblock"}
+        </span>
         <BsFillHeptagonFill color="red" size="15px" />
       </div>
     </div>
