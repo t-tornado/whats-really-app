@@ -15,6 +15,7 @@ export const UserCard: React.FC<Props> = (props) => {
   const activeUser = useActiveUser()[0];
   const [openOptions, setOpenOptions] = useState(false);
   const username = user.username;
+  const defaultColor = type === "blocked-users" ? "white" : "default";
   const setCurrentRecipient = () => {
     props.setRecipient && props.setRecipient(user);
     if (openOptions) {
@@ -49,16 +50,34 @@ export const UserCard: React.FC<Props> = (props) => {
     >
       <div className="flex w-full">
         <div
-          className="flex space-x-6 p-3 flex-1"
+          className="flex space-x-6 p-3 flex-1 items-center"
           onClick={setCurrentRecipient}
         >
-          <FiUser color="#000" size="24px" />
-          <span className="text-sm text-default font-poppins flex flex-1">
+          {" "}
+          <div
+            className={`${
+              type === "blocked-users" ? "hidden" : ""
+            } w-2 h-2 rounded-full bg-active`}
+          />
+          <div
+            className={`${
+              type === "blocked-users" ? "border-white" : "border-darkBlue"
+            } flex justify-center items-center p-1 border-2  rounded-full `}
+          >
+            <FiUser color={defaultColor} size="24px" />
+          </div>
+          <span
+            className={`text-${defaultColor} text-sm font-poppins flex flex-1`}
+          >
             {username}
           </span>
         </div>
-        <div className="flex w-10 justify-end items-center pr-2">
-          <BsThreeDots onClick={toggleOptions} color="#000" size="15px" />
+        <div className="flex justify-end items-center px-2">
+          <BsThreeDots
+            onClick={toggleOptions}
+            color={defaultColor}
+            size="15px"
+          />
         </div>
       </div>
       <div

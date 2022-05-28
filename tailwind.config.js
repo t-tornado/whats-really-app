@@ -6,8 +6,9 @@ module.exports = {
         default: "#000",
         lightBlue: "#7579E7",
         darkBlue: "#0E185F",
-        gray: "#c4c4c4",
+        gray: "#F3F1F5",
         navBg: "#d9d9d9",
+        active: "#83BD75",
       },
       fontFamily: {
         poppins: ["Poppins"],

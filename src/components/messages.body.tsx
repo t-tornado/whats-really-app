@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { IMessage, IUser, ReqMessage, useSocket } from "../utils";
+import { ActiveRecipientCard } from "./active.recipient.card";
 import { Message } from "./message";
 import { UserCard } from "./user.card";
 
@@ -35,23 +36,36 @@ export const MessagesBody: React.FC<Props> = (props) => {
   };
 
   const renderMessages = () => {
-    return messages.map((message, idx) => {
-      if (
-        (message.recipient_blocked && currentUser?._id !== message.sender_id) ||
-        (message.sender_blocked && currentUser?._id !== message.sender_id)
-      )
-        return null;
-      else
-        return (
-          <Message
-            {...{
-              message,
-              self: message.sender_id === currentUser?._id,
-              key: idx,
-            }}
-          />
-        );
-    });
+    if (messages.length > 1) {
+      return messages.map((message, idx) => {
+        if (
+          (message.recipient_blocked &&
+            currentUser?._id !== message.sender_id) ||
+          (message.sender_blocked && currentUser?._id !== message.sender_id)
+        )
+          return null;
+        else
+          return (
+            <Message
+              {...{
+                message,
+                self: message.sender_id === currentUser?._id,
+                key: idx,
+              }}
+            />
+          );
+      });
+    } else {
+      return (
+        <>
+          <div className="flex h-full w-full justify-center items-center">
+            <span className="text-darkBlue font-poppinsBold text-xl">
+              No messages to display
+            </span>
+          </div>
+        </>
+      );
+    }
   };
 
   useEffect(() => {
@@ -81,8 +95,10 @@ export const MessagesBody: React.FC<Props> = (props) => {
 
   return (
     <div className="w-[75%] h-full px-10">
-      <div className="w-full h-[10%] flex items-center justify-start">
-        {currentRecipient ? <UserCard user={currentRecipient} /> : null}
+      <div className="w-full h-[8%] flex items-center justify-start mb-6">
+        {currentRecipient ? (
+          <ActiveRecipientCard user={currentRecipient} />
+        ) : null}
       </div>
       <div className="w-full h-[70%] flex flex-col space-y-5 px-6 overflow-hidden overflow-y-scroll">
         <div
@@ -107,7 +123,7 @@ export const MessagesBody: React.FC<Props> = (props) => {
       <div className="w-full h-[20%] pt-4 flex">
         <div className="w-[80%] h-full flex items-center space-x-14">
           <textarea
-            className="p-3 rounded-lg w-[75%] flex h-12 flex-col text-sm"
+            className="p-3 rounded-lg w-[75%] flex h-12 flex-col text-sm bg-gray"
             draggable={false}
             value={message}
             onChange={onChangeMessageInput}
