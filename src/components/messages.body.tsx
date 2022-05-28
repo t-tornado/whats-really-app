@@ -36,23 +36,36 @@ export const MessagesBody: React.FC<Props> = (props) => {
   };
 
   const renderMessages = () => {
-    return messages.map((message, idx) => {
-      if (
-        (message.recipient_blocked && currentUser?._id !== message.sender_id) ||
-        (message.sender_blocked && currentUser?._id !== message.sender_id)
-      )
-        return null;
-      else
-        return (
-          <Message
-            {...{
-              message,
-              self: message.sender_id === currentUser?._id,
-              key: idx,
-            }}
-          />
-        );
-    });
+    if (messages.length > 1) {
+      return messages.map((message, idx) => {
+        if (
+          (message.recipient_blocked &&
+            currentUser?._id !== message.sender_id) ||
+          (message.sender_blocked && currentUser?._id !== message.sender_id)
+        )
+          return null;
+        else
+          return (
+            <Message
+              {...{
+                message,
+                self: message.sender_id === currentUser?._id,
+                key: idx,
+              }}
+            />
+          );
+      });
+    } else {
+      return (
+        <>
+          <div className="flex h-full w-full justify-center items-center">
+            <span className="text-darkBlue font-poppinsBold text-xl">
+              No messages to display
+            </span>
+          </div>
+        </>
+      );
+    }
   };
 
   useEffect(() => {

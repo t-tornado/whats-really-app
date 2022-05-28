@@ -15,7 +15,7 @@ export const Message: React.FC<Props> = (props) => {
     >
       <p
         className={`${
-          self ? "bg-lightBlue text-white" : "bg-white text-default"
+          self ? "bg-lightBlue text-white" : "bg-gray text-default"
         } text-sm font-poppins py-3 px-5 rounded-md max-w-[70%]`}
       >
         {body}

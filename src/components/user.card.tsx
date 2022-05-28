@@ -59,7 +59,11 @@ export const UserCard: React.FC<Props> = (props) => {
               type === "blocked-users" ? "hidden" : ""
             } w-2 h-2 rounded-full bg-active`}
           />
-          <div className="flex justify-center items-center p-1 border-2 border-darkBlue rounded-full ">
+          <div
+            className={`${
+              type === "blocked-users" ? "border-white" : "border-darkBlue"
+            } flex justify-center items-center p-1 border-2  rounded-full `}
+          >
             <FiUser color={defaultColor} size="24px" />
           </div>
           <span

@@ -4,6 +4,7 @@ import { IUser, useActiveUser, useSocket } from "../utils";
 import { UserCard } from "./user.card";
 import { AiOutlineLogin } from "react-icons/ai";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { FiUser } from "react-icons/fi";
 
 interface Props {
   setRecipient: (user: IUser) => void;
@@ -74,7 +75,7 @@ export const UsersNav: React.FC<Props> = (props) => {
           onClick={toggleOpenBlockedUsers}
           className="flex items-center justify-between px-4 pl-6"
         >
-          <span className="font-poppinsMedium text-white text-sm pl-4 py-4">
+          <span className="font-poppinsMedium text-white text-sm pl-4 py-3">
             Blocked users
           </span>
           {openBlockedUsers ? (
@@ -88,7 +89,7 @@ export const UsersNav: React.FC<Props> = (props) => {
           )}
         </div>
         <div
-          className={`flex flex-col w-full transition-height transition-all ease-in-out duration-900 ${
+          className={`flex flex-col w-full transition-height transition-all ease-in-out duration-900 mb-4 ${
             openBlockedUsers ? "min-h-32" : "h-0"
           } `}
         >
@@ -99,14 +100,19 @@ export const UsersNav: React.FC<Props> = (props) => {
         {renderUnblockedUsers()}
       </div>
 
-      <div className="flex h-[10%] justify-between items-center w-full pb-10 px-5 pl-10">
-        <div className="flex flex-col space-y-2">
-          <span className="text-base text-default font-poppinsMedium">
-            {username}
-          </span>
-          <div className="flex space-x-2 items-center">
-            <div className="w-2 h-2 bg-active rounded-full" />
-            <span className="text-default text-sm font-poppins">Active</span>
+      <div className="flex h-[10%] justify-between items-center w-full pb-10 px-5 pl-4">
+        <div className="flex space-x-4 items-center">
+          <div className="flex p-3 h-2/3 justify-center items-center rounded-full bg-lightBlue">
+            <FiUser color="#fff" size="20px" />
+          </div>
+          <div className="flex flex-col space-y-2">
+            <span className="text-base text-default font-poppinsMedium">
+              {username}
+            </span>
+            <div className="flex space-x-2 items-center">
+              <div className="w-2 h-2 bg-active rounded-full" />
+              <span className="text-default text-sm font-poppins">Active</span>
+            </div>
           </div>
         </div>
         <div
