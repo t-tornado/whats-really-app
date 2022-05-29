@@ -14,7 +14,14 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <Auth0Provider {...{ clientId, domain, redirectUri: window.location.origin }}>
+  <Auth0Provider
+    {...{
+      clientId,
+      domain,
+      redirectUri: window.location.origin,
+      useRefreshTokens: true,
+    }}
+  >
     <SocketProvider>
       <UserProvider>
         <React.StrictMode>
