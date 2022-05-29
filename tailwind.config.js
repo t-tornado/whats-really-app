@@ -5,7 +5,10 @@ module.exports = {
       colors: {
         default: "#000",
         lightBlue: "#7579E7",
-        darkBlue: "#120078",
+        darkBlue: "#0E185F",
+        gray: "#F3F1F5",
+        navBg: "#d9d9d9",
+        active: "#83BD75",
       },
       fontFamily: {
         poppins: ["Poppins"],
@@ -15,6 +18,7 @@ module.exports = {
       },
       transitionProperty: {
         width: "width",
+        height: "height",
       },
     },
   },
