@@ -3,7 +3,6 @@ import { FiSend } from "react-icons/fi";
 import { IMessage, IUser, ReqMessage, useSocket } from "../utils";
 import { ActiveRecipientCard } from "./active.recipient.card";
 import { Message } from "./message";
-import { UserCard } from "./user.card";
 
 interface Props {
   currentUser: (IUser & { _id: string }) | null;

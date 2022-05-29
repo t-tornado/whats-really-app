@@ -1,19 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useState } from "react";
+import React from "react";
 import { FiChevronsRight } from "react-icons/fi";
 
 export const AuthPage: React.FC = () => {
   const { loginWithPopup } = useAuth0();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onPasswordChange = (e: any) => {
-    setPassword(e.target.value);
-  };
-
-  const onEmailChange = (e: any) => {
-    setEmail(e.target.value);
-  };
 
   const submitCredentials = (e: any) => {
     e.preventDefault();
