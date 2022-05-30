@@ -62,7 +62,15 @@ export const UsersNav: React.FC<Props> = (props) => {
       console.log("Getting blocked users");
       setBlockedUsers(blockedUsers);
     });
-  }, [socket]);
+    socket.on("refreshUsers", (refreshParams) => {
+      console.log("Server requests that I refresh my users");
+      const params = {
+        activeUser,
+        trigger_id: refreshParams.trigger_id,
+      };
+      socket.emit("refreshUsers", params);
+    });
+  }, [socket, activeUser]);
 
   const toggleOpenBlockedUsers = () => {
     setOpenBlockedUsers((p) => !p);
