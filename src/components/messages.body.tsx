@@ -73,13 +73,12 @@ export const MessagesBody: React.FC<Props> = (props) => {
 
   useEffect(() => {
     socket.on("fetchMessages", (data) => {
-      console.log("MESSAGE FETCHED");
       if (
         data.members.includes(currentUser?._id) &&
         data.members.includes(currentRecipient?._id)
       ) {
         setMessages(data.messages || []);
-      } else console.warn("not your conversation");
+      } else return;
     });
   }, [socket, currentRecipient]);
 
@@ -89,8 +88,6 @@ export const MessagesBody: React.FC<Props> = (props) => {
       inline: "end",
     });
   }, [messages, scrollIntoViewRef]);
-
-  console.log(messages);
 
   return (
     <div className="w-[75%] h-full px-10">
