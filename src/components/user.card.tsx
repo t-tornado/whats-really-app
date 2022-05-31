@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
 import { BsFillHeptagonFill, BsThreeDots } from "react-icons/bs";
 import { IUser, useActiveUser, useSocket } from "../utils";
@@ -13,6 +13,7 @@ export const UserCard: React.FC<Props> = (props) => {
   const { user, type } = props;
   const socket = useSocket();
   const activeUser = useActiveUser()[0];
+  // const [statusChanged, setStatusChanged] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const username = user.username;
   const defaultColor = type === "blocked-users" ? "white" : "default";
@@ -42,6 +43,7 @@ export const UserCard: React.FC<Props> = (props) => {
     }
     setOpenOptions(false);
   };
+
   return (
     <div
       className={`flex flex-col items-center w-full py-4 pl-6 ml-0 cursor-pointer transition-height transition-all ease-in-out duration-1000 ${
@@ -57,7 +59,7 @@ export const UserCard: React.FC<Props> = (props) => {
           <div
             className={`${
               type === "blocked-users" ? "hidden" : ""
-            } w-2 h-2 rounded-full bg-active`}
+            } w-2 h-2 rounded-full bg-${user.status ? "active" : "default"}`}
           />
           <div
             className={`${

@@ -22,6 +22,10 @@ export const UsersNav: React.FC<Props> = (props) => {
   const username = activeUser?.username;
 
   const onLogout = () => {
+    const params = {
+      user_id: activeUser?._id,
+    };
+    socket.emit("goOffline", params);
     logout();
   };
 
@@ -53,16 +57,20 @@ export const UsersNav: React.FC<Props> = (props) => {
       setActiveUser(data.activeUser);
     });
     socket.on("afterBlockUserOperation", (blockedUsers) => {
-      console.log("User has been blocked, getting updated user blocked users");
-      console.log(blockedUsers);
       setBlockedUsers(blockedUsers);
     });
 
     socket.on("fetchBlockedUsers", (blockedUsers) => {
-      console.log("Getting blocked users");
       setBlockedUsers(blockedUsers);
     });
-  }, [socket]);
+    socket.on("refreshUsers", (refreshParams) => {
+      const params = {
+        activeUser,
+        trigger_id: refreshParams.trigger_id,
+      };
+      socket.emit("refreshUsers", params);
+    });
+  }, [socket, activeUser]);
 
   const toggleOpenBlockedUsers = () => {
     setOpenBlockedUsers((p) => !p);

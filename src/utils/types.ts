@@ -7,6 +7,7 @@ export interface IUser {
   created_at: Date;
   blocked_users: IUser[] | string[];
   _id: string;
+  status: boolean;
 }
 export interface IMessage {
   sender_id: string;

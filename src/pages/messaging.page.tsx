@@ -14,7 +14,6 @@ export const MessagingPage: React.FC = () => {
       sender_id: user?._id,
     };
     socket.emit("getMessages", params);
-    console.log([user?._id, recipient?._id]);
   };
 
   return (
